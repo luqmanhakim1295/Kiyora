@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="ms">
+<head>
+<meta charset="utf-8">
+<title>KIYORA Ad 30s</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+  :root {
+    --navy: #071f57;
+    --navy-2: #0c3290;
+    --blue: #1556d0;
+    --magenta: #e5157a;
+    --gold: #f7c948;
+    --gold-2: #e0a21b;
+    --green: #22c55e;
+    --red: #e11d48;
+    --white: #ffffff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--navy); }
+  body { font-family: 'Montserrat', 'Inter', sans-serif; color: var(--white); position: relative; }
+
+  .bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(900px 900px at 50% 38%, rgba(37, 99, 235, .55), transparent 70%),
+      linear-gradient(180deg, var(--navy) 0%, var(--navy-2) 55%, var(--navy) 100%);
+  }
+  .bg-hex {
+    position: absolute; inset: -200px;
+    background-image: radial-gradient(rgba(255,255,255,.08) 2px, transparent 2.5px);
+    background-size: 46px 46px;
+    animation: drift 30s linear 0s both;
+  }
+
+  .logo {
+    position: absolute; top: 110px; left: 0; right: 0; text-align: center;
+    font-weight: 900; font-size: 56px; letter-spacing: 6px; z-index: 20;
+    text-shadow: 0 4px 18px rgba(0,0,0,.35);
+  }
+  .logo sup { font-size: 22px; letter-spacing: 0; vertical-align: 26px; }
+
+  .scene { position: absolute; inset: 0; opacity: 0; }
+
+  .photo {
+    position: absolute; left: 60px; width: 960px; top: 230px; height: 768px;
+    border-radius: 36px; overflow: hidden;
+    box-shadow: 0 30px 80px rgba(0,0,0,.45);
+    border: 6px solid rgba(255,255,255,.9);
+  }
+  .photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  .headline {
+    position: absolute; left: 0; right: 0; text-align: center;
+    font-weight: 900; font-style: italic; line-height: 1.02; text-transform: uppercase;
+    text-shadow: 0 6px 24px rgba(0,0,0,.35);
+  }
+  .tag {
+    display: inline-block; padding: 14px 40px 18px; border-radius: 18px;
+    background: var(--magenta); transform: skewX(-8deg);
+    box-shadow: 0 14px 40px rgba(229,21,122,.45);
+  }
+  .tag.gold { background: var(--gold); color: var(--navy); box-shadow: 0 14px 40px rgba(247,201,72,.4); }
+  .sub {
+    position: absolute; left: 0; right: 0; text-align: center;
+    font-weight: 800; font-size: 46px; color: #dbe6ff;
+  }
+
+  .captions { position: absolute; left: 70px; right: 70px; top: 1440px; height: 200px; z-index: 30; }
+  .cap {
+    position: absolute; left: 0; right: 0; top: 0; text-align: center; opacity: 0;
+    font-weight: 800; font-size: 50px; line-height: 1.25;
+  }
+  .cap > span {
+    background: rgba(0,0,0,.62); padding: 8px 22px; border-radius: 14px;
+    -webkit-box-decoration-break: clone; box-decoration-break: clone;
+  }
+  .cap b { color: var(--gold); font-weight: 900; }
+
+  .box-wrap { position: absolute; left: 50%; top: 250px; width: 560px; margin-left: -280px; }
+  .box-wrap img.box { width: 100%; display: block; filter: drop-shadow(0 40px 60px rgba(0,0,0,.5)); }
+  .glow {
+    position: absolute; left: 50%; top: 50%; width: 1000px; height: 1000px; margin: -500px 0 0 -500px;
+    background: radial-gradient(circle, rgba(247,201,72,.55) 0%, rgba(247,201,72,.18) 35%, rgba(247,201,72,0) 62%);
+    border-radius: 50%;
+  }
+  .patch { position: absolute; width: 250px; }
+
+  .icon-circle {
+    position: absolute; width: 400px; height: 400px; border-radius: 50%;
+    background: #ffffff; box-shadow: 0 30px 70px rgba(0,0,0,.4);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .icon-circle svg { width: 250px; height: 250px; }
+  .icon-circle svg.xmark { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .icon-label {
+    position: absolute; width: 460px; text-align: center; font-weight: 900; font-style: italic;
+    font-size: 50px; line-height: 1.05; text-transform: uppercase;
+  }
+
+  .chip {
+    position: absolute; padding: 16px 30px; border-radius: 999px; background: #fff; color: var(--navy);
+    font-weight: 900; font-size: 38px; box-shadow: 0 14px 30px rgba(0,0,0,.3);
+  }
+  .check {
+    position: absolute; width: 170px; height: 170px; border-radius: 50%; background: var(--green);
+    display: flex; align-items: center; justify-content: center; box-shadow: 0 16px 40px rgba(34,197,94,.5);
+    border: 8px solid #fff;
+  }
+
+  .stars { position: absolute; top: 300px; left: 0; right: 0; display: flex; justify-content: center; gap: 18px; }
+  .stars svg { width: 150px; height: 150px; filter: drop-shadow(0 10px 20px rgba(0,0,0,.35)); }
+  .rating { position: absolute; top: 470px; left: 0; right: 0; text-align: center; font-weight: 900; font-size: 210px; line-height: 1; }
+  .rating small { font-size: 90px; color: #b9c8f0; }
+  .quote {
+    position: absolute; left: 90px; right: 90px; top: 800px; padding: 40px 48px; border-radius: 32px;
+    background: #fff; color: var(--navy); box-shadow: 0 30px 70px rgba(0,0,0,.4);
+    font-weight: 800; font-size: 42px; line-height: 1.3;
+  }
+  .quote .who { margin-top: 18px; font-size: 32px; color: var(--blue); font-weight: 900; }
+  .quote .qmark { position: absolute; top: -60px; left: 30px; font-size: 180px; color: var(--magenta); font-weight: 900; line-height: 1; }
+  .fineprint { position: absolute; left: 0; right: 0; top: 1350px; text-align: center; font-size: 26px; font-weight: 700; color: #9fb2e6; }
+
+  .badge {
+    position: absolute; left: 50%; top: 680px; width: 560px; height: 560px; margin-left: -280px;
+  }
+  .badge svg { width: 100%; height: 100%; filter: drop-shadow(0 30px 50px rgba(0,0,0,.5)); }
+
+  .cta-btn {
+    position: absolute; left: 140px; right: 140px; top: 1130px; height: 150px; border-radius: 999px;
+    background: linear-gradient(180deg, #ffe07a, var(--gold) 55%, var(--gold-2));
+    color: var(--navy); font-weight: 900; font-style: italic; font-size: 64px;
+    display: flex; align-items: center; justify-content: center; gap: 22px;
+    box-shadow: 0 20px 50px rgba(247,201,72,.45), inset 0 -6px 0 rgba(0,0,0,.12);
+  }
+  .url { position: absolute; left: 0; right: 0; top: 1300px; text-align: center; font-weight: 900; font-size: 64px; letter-spacing: 1px; }
+  .perk {
+    position: absolute; left: 90px; right: 90px; height: 150px; border-radius: 28px;
+    background: rgba(255,255,255,.12); border: 3px solid rgba(255,255,255,.35);
+    display: flex; align-items: center; gap: 30px; padding: 0 40px;
+    font-weight: 900; font-size: 48px; line-height: 1.05; text-transform: uppercase;
+  }
+  .perk small { display: block; font-size: 32px; font-weight: 800; color: var(--gold); text-transform: none; margin-top: 6px; }
+  .perk svg { width: 110px; height: 110px; flex: none; }
+
+  @keyframes drift { from { transform: translate(0, 0); } to { transform: translate(-46px, -92px); } }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
+  @keyframes slideUp { from { opacity: 0; transform: translateY(80px); } to { opacity: 1; transform: none; } }
+  @keyframes slideDown { from { opacity: 0; transform: translateY(-80px); } to { opacity: 1; transform: none; } }
+  @keyframes slideLeft { from { opacity: 0; transform: translateX(140px); } to { opacity: 1; transform: none; } }
+  @keyframes slideRight { from { opacity: 0; transform: translateX(-140px); } to { opacity: 1; transform: none; } }
+  @keyframes popIn { 0% { opacity: 0; transform: scale(.4); } 70% { opacity: 1; transform: scale(1.08); } 100% { opacity: 1; transform: scale(1); } }
+  @keyframes stamp { 0% { opacity: 0; transform: scale(2.4) rotate(-14deg); } 100% { opacity: 1; transform: scale(1) rotate(0deg); } }
+  @keyframes kenburns { from { transform: scale(1); } to { transform: scale(1.14); } }
+  @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  @keyframes floaty { 0%, 100% { transform: translateY(0) rotate(-8deg); } 50% { transform: translateY(-26px) rotate(-2deg); } }
+  @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.06); } }
+  @keyframes shake { 0%, 100% { transform: translateX(0); } 20% { transform: translateX(-14px); } 40% { transform: translateX(14px); } 60% { transform: translateX(-8px); } 80% { transform: translateX(8px); } }
+  @keyframes boxIn { 0% { opacity: 0; transform: translateY(260px) scale(.7) rotate(6deg); } 100% { opacity: 1; transform: none; } }
+</style>
+</head>
+<body>
+<div class="bg"><div class="bg-hex"></div></div>
+<div class="logo">KIYORA<sup>™</sup></div>
+
+<!-- S1 · Hook · 0.00–2.80 -->
+<div class="scene" style="animation: fadeIn .2s linear 0s both, fadeOut .25s linear 2.7s forwards">
+  <div class="photo" style="animation: slideDown .45s ease-out 0s both">
+    <img src="img/hook-makan.jpg" style="animation: kenburns 3s linear 0s both">
+  </div>
+  <div class="headline" style="top: 1060px; font-size: 112px; animation: stamp .35s cubic-bezier(.2,1.4,.4,1) .35s both">
+    <span class="tag">Lapar Lagi?</span>
+  </div>
+  <div class="sub" style="top: 1260px; animation: slideUp .4s ease-out .8s both">Padahal baru lepas makan…</div>
+</div>
+
+<!-- S2a · Craving · 2.80–4.95 -->
+<div class="scene" style="animation: fadeIn .2s linear 2.75s both, fadeOut .25s linear 4.9s forwards">
+  <div class="photo" style="animation: slideLeft .4s ease-out 2.75s both">
+    <img src="img/craving-manis.jpg" style="animation: kenburns 2.4s linear 2.75s both">
+  </div>
+  <div class="headline" style="top: 1060px; font-size: 104px; animation: popIn .4s ease-out 3.1s both">
+    <span class="tag">Craving</span><br>
+    <span style="font-size: 76px">Tak Berhenti</span>
+  </div>
+</div>
+
+<!-- S2b · Diet gagal · 4.95–7.20 -->
+<div class="scene" style="animation: fadeIn .2s linear 4.9s both, fadeOut .25s linear 7.15s forwards">
+  <div class="photo" style="animation: slideLeft .4s ease-out 4.9s both">
+    <img src="img/diet-gagal.jpg" style="animation: kenburns 2.5s linear 4.9s both">
+  </div>
+  <div class="headline" style="top: 1060px; font-size: 84px; animation: popIn .4s ease-out 5.2s both">
+    <span class="tag">Diet Ketat?</span><br>
+    <span style="display: inline-block; margin-top: 14px; animation: shake .5s ease-in-out 6.0s both">Berat Naik Balik!</span>
+  </div>
+</div>
+
+<!-- S3a · Product reveal · 7.20–9.20 -->
+<div class="scene" style="animation: fadeIn .2s linear 7.15s both, fadeOut .25s linear 9.15s forwards">
+  <div class="box-wrap" style="animation: boxIn .55s cubic-bezier(.2,1.2,.4,1) 7.2s both">
+    <div class="glow" style="animation: pulse 1.6s ease-in-out 7.2s 2 both"></div>
+    <img class="box" src="img/box.png" style="position: relative">
+    <img class="patch" src="img/patch.png" style="left: -170px; bottom: 30px; animation: floaty 2s ease-in-out 7.2s both">
+  </div>
+  <div class="headline" style="top: 1150px; font-size: 92px; animation: slideUp .4s ease-out 7.6s both">
+    <span class="tag gold" style="text-transform: none">GLP-1i Patch</span>
+  </div>
+  <div class="sub" style="top: 1310px; animation: fadeIn .3s linear 8.0s both">Craving Reduction Patch</div>
+</div>
+
+<!-- S3b · Tak perlu pil / jarum · 9.20–12.25 -->
+<div class="scene" style="animation: fadeIn .2s linear 9.15s both, fadeOut .25s linear 12.2s forwards">
+  <div class="headline" style="top: 300px; font-size: 92px; animation: slideDown .4s ease-out 9.2s both">Tak Perlu…</div>
+  <div class="icon-circle" style="left: 70px; top: 520px; animation: popIn .4s ease-out 9.35s both">
+    <svg viewBox="0 0 100 100" aria-hidden="true">
+      <g transform="rotate(-40 50 50)">
+        <rect x="14" y="34" width="72" height="32" rx="16" fill="#e5157a"/>
+        <path d="M50 34 H70 A16 16 0 0 1 70 66 H50 Z" fill="#1556d0"/>
+        <rect x="22" y="40" width="20" height="6" rx="3" fill="#fff" opacity=".5"/>
+      </g>
+    </svg>
+    <svg class="xmark" viewBox="0 0 100 100" style="animation: stamp .3s ease-out 10.1s both" aria-hidden="true">
+      <circle cx="50" cy="50" r="46" fill="none" stroke="#e11d48" stroke-width="7"/>
+      <path d="M20 80 L80 20" stroke="#e11d48" stroke-width="8" stroke-linecap="round"/>
+    </svg>
+  </div>
+  <div class="icon-label" style="left: 40px; top: 960px; animation: slideUp .35s ease-out 9.6s both">Telan<br>Pil</div>
+  <div class="icon-circle" style="right: 70px; top: 520px; animation: popIn .4s ease-out 10.7s both">
+    <svg viewBox="0 0 100 100" aria-hidden="true">
+      <g transform="rotate(45 50 50)">
+        <rect x="40" y="6" width="20" height="6" rx="2" fill="#071f57"/>
+        <rect x="47" y="12" width="6" height="12" fill="#071f57"/>
+        <rect x="36" y="24" width="28" height="44" rx="4" fill="#cfe0ff" stroke="#071f57" stroke-width="4"/>
+        <rect x="40" y="44" width="20" height="20" fill="#1556d0"/>
+        <path d="M44 32 H56 M44 38 H56" stroke="#071f57" stroke-width="3"/>
+        <rect x="48" y="68" width="4" height="26" fill="#9aa5b8"/>
+      </g>
+    </svg>
+    <svg class="xmark" viewBox="0 0 100 100" style="animation: stamp .3s ease-out 11.4s both" aria-hidden="true">
+      <circle cx="50" cy="50" r="46" fill="none" stroke="#e11d48" stroke-width="7"/>
+      <path d="M20 80 L80 20" stroke="#e11d48" stroke-width="8" stroke-linecap="round"/>
+    </svg>
+  </div>
+  <div class="icon-label" style="right: 40px; top: 960px; animation: slideUp .35s ease-out 10.9s both">Cucuk<br>Jarum</div>
+</div>
+
+<!-- S3c · Tampal je · 12.25–14.30 -->
+<div class="scene" style="animation: fadeIn .2s linear 12.2s both, fadeOut .25s linear 14.25s forwards">
+  <div class="photo" style="top: 260px; height: 760px; animation: slideUp .4s ease-out 12.2s both">
+    <img src="img/tampal-perut.jpg" style="animation: kenburns 2.4s linear 12.2s both">
+  </div>
+  <div class="check" style="right: 50px; top: 170px; animation: stamp .35s ease-out 12.6s both">
+    <svg viewBox="0 0 100 100" width="100" height="100" aria-hidden="true"><path d="M22 52 L42 72 L80 30" fill="none" stroke="#fff" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </div>
+  <div class="headline" style="top: 1070px; font-size: 120px; animation: popIn .4s ease-out 12.45s both">
+    <span class="tag">Tampal Je!</span>
+  </div>
+  <div class="chip" style="left: 200px; top: 1270px; animation: slideRight .35s ease-out 13.1s both">Lengan</div>
+  <div class="chip" style="right: 200px; top: 1270px; animation: slideLeft .35s ease-out 13.35s both">Perut</div>
+</div>
+
+<!-- S3d · Formula herba · 14.30–17.35 -->
+<div class="scene" style="animation: fadeIn .2s linear 14.25s both, fadeOut .25s linear 17.3s forwards">
+  <div class="photo" style="top: 250px; height: 500px; background: #fff; animation: slideDown .4s ease-out 14.25s both">
+    <img src="img/herba.jpg" style="animation: kenburns 3.1s linear 14.25s both">
+  </div>
+  <div class="chip" style="left: 70px; top: 790px; animation: popIn .3s ease-out 14.7s both">Halia</div>
+  <div class="chip" style="left: 290px; top: 790px; animation: popIn .3s ease-out 14.9s both">Kunyit</div>
+  <div class="chip" style="left: 540px; top: 790px; animation: popIn .3s ease-out 15.1s both">Cassia Seed</div>
+  <div class="chip" style="left: 380px; top: 900px; animation: popIn .3s ease-out 15.3s both">Mugwort</div>
+  <div class="headline" style="top: 1070px; font-size: 104px; animation: slideUp .4s ease-out 14.5s both">
+    <span class="tag gold">Formula Herba</span>
+  </div>
+  <div class="sub" style="top: 1250px; animation: fadeIn .3s linear 15.6s both">Bantu kawal selera makan</div>
+</div>
+
+<!-- S4 · Bukti · 17.35–23.15 -->
+<div class="scene" style="animation: fadeIn .2s linear 17.3s both, fadeOut .25s linear 23.1s forwards">
+  <div style="animation: fadeOut .3s linear 20.3s forwards">
+    <div class="stars">
+      <svg viewBox="0 0 24 24" style="animation: popIn .3s ease-out 17.45s both" aria-hidden="true"><path fill="#f7c948" d="M12 1.8l3.1 6.6 7.2.9-5.3 5 1.4 7.1L12 17.9l-6.4 3.5L7 14.3 1.7 9.3l7.2-.9z"/></svg>
+      <svg viewBox="0 0 24 24" style="animation: popIn .3s ease-out 17.6s both" aria-hidden="true"><path fill="#f7c948" d="M12 1.8l3.1 6.6 7.2.9-5.3 5 1.4 7.1L12 17.9l-6.4 3.5L7 14.3 1.7 9.3l7.2-.9z"/></svg>
+      <svg viewBox="0 0 24 24" style="animation: popIn .3s ease-out 17.75s both" aria-hidden="true"><path fill="#f7c948" d="M12 1.8l3.1 6.6 7.2.9-5.3 5 1.4 7.1L12 17.9l-6.4 3.5L7 14.3 1.7 9.3l7.2-.9z"/></svg>
+      <svg viewBox="0 0 24 24" style="animation: popIn .3s ease-out 17.9s both" aria-hidden="true"><path fill="#f7c948" d="M12 1.8l3.1 6.6 7.2.9-5.3 5 1.4 7.1L12 17.9l-6.4 3.5L7 14.3 1.7 9.3l7.2-.9z"/></svg>
+      <svg viewBox="0 0 24 24" style="animation: popIn .3s ease-out 18.05s both" aria-hidden="true"><path fill="#f7c948" d="M12 1.8l3.1 6.6 7.2.9-5.3 5 1.4 7.1L12 17.9l-6.4 3.5L7 14.3 1.7 9.3l7.2-.9z"/></svg>
+    </div>
+    <div class="rating" style="animation: popIn .4s ease-out 18.2s both">4.9<small>/5</small></div>
+    <div class="quote" style="animation: slideUp .45s ease-out 18.7s both">
+      <div class="qmark">“</div>
+      Selera makan makin kurang &amp; tak cepat letih bila diet.
+      <div class="who">— Kak Lieya, pengguna KIYORA</div>
+    </div>
+    <div class="fineprint" style="animation: fadeIn .3s linear 18.9s both">*Hasil berbeza mengikut individu.</div>
+  </div>
+
+  <div style="animation: fadeIn .2s linear 20.35s both">
+    <div class="headline" style="top: 330px; font-size: 92px; animation: slideDown .4s ease-out 20.4s both">
+      <span class="tag gold">Jaminan</span><br>
+      <span style="font-size: 66px">Wang Dikembalikan</span>
+    </div>
+    <div class="badge" style="animation: stamp .45s cubic-bezier(.2,1.3,.4,1) 20.7s both">
+      <svg viewBox="0 0 200 200" aria-hidden="true">
+        <defs>
+          <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#ffe58a"/><stop offset=".5" stop-color="#f7c948"/><stop offset="1" stop-color="#c98a12"/>
+          </linearGradient>
+        </defs>
+        <g style="transform-origin: 100px 100px; animation: spin 12s linear 20.7s both">
+          <polygon fill="url(#gold)" points="100,4 109,20 125,8 129,26 147,19 146,37 164,35 158,52 176,55 165,69 181,77 167,88 180,100 167,112 181,123 165,131 176,145 158,148 164,165 146,163 147,181 129,174 125,192 109,180 100,196 91,180 75,192 71,174 53,181 54,163 36,165 42,148 24,145 35,131 19,123 33,112 20,100 33,88 19,77 35,69 24,55 42,52 36,35 54,37 53,19 71,26 75,8 91,20"/>
+        </g>
+        <circle cx="100" cy="100" r="70" fill="#071f57" stroke="#ffe58a" stroke-width="4"/>
+        <text x="100" y="112" text-anchor="middle" font-family="Montserrat" font-weight="900" font-size="58" fill="#f7c948">60</text>
+        <text x="100" y="142" text-anchor="middle" font-family="Montserrat" font-weight="900" font-size="22" fill="#fff">HARI</text>
+        <text x="100" y="68" text-anchor="middle" font-family="Montserrat" font-weight="800" font-size="13" fill="#fff" letter-spacing="1">JAMINAN</text>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<!-- S5 · CTA · 23.15–30.00 -->
+<div class="scene" style="animation: fadeIn .25s linear 23.1s both">
+  <div class="box-wrap" style="top: 230px; width: 340px; margin-left: -170px; animation: boxIn .5s cubic-bezier(.2,1.2,.4,1) 23.15s both">
+    <img class="box" src="img/box.png">
+    <img class="patch" src="img/patch.png" style="width: 160px; right: -120px; bottom: 20px; animation: floaty 2.2s ease-in-out 23.2s both"></div>
+  <div class="perk" style="top: 790px; animation: slideRight .4s ease-out 23.4s both">
+    <svg viewBox="0 0 64 64" aria-hidden="true">
+      <rect x="4" y="16" width="34" height="26" rx="3" fill="#f7c948"/>
+      <path d="M38 24 H50 L58 34 V42 H38 Z" fill="#f7c948"/>
+      <rect x="42" y="27" width="8" height="7" fill="#071f57"/>
+      <circle cx="16" cy="45" r="6" fill="#fff" stroke="#071f57" stroke-width="3"/>
+      <circle cx="48" cy="45" r="6" fill="#fff" stroke="#071f57" stroke-width="3"/>
+    </svg>
+    <div>Penghantaran Percuma<small>Seluruh Malaysia</small></div>
+  </div>
+  <div class="perk" style="top: 970px; animation: slideRight .4s ease-out 25.75s both">
+    <svg viewBox="0 0 64 64" aria-hidden="true">
+      <rect x="6" y="14" width="52" height="36" rx="6" fill="#22c55e"/>
+      <circle cx="32" cy="32" r="10" fill="none" stroke="#fff" stroke-width="4"/>
+      <rect x="10" y="20" width="6" height="6" rx="2" fill="#fff"/>
+      <rect x="48" y="38" width="6" height="6" rx="2" fill="#fff"/>
+    </svg>
+    <div>Boleh COD<small>Bayar semasa terima barang</small></div>
+  </div>
+  <div class="cta-btn" style="animation: popIn .4s ease-out 26.8s both">
+    <span style="display: inline-flex; align-items: center; gap: 22px; animation: pulse .9s ease-in-out 27.2s 3 both">
+      Order Sekarang
+      <svg viewBox="0 0 24 24" width="64" height="64" aria-hidden="true"><path d="M5 12h12M12 5l7 7-7 7" fill="none" stroke="#071f57" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </span>
+  </div>
+  <div class="url" style="animation: slideUp .4s ease-out 27.3s both">kiyora-official.com</div>
+</div>
+
+<!-- Captions (synced to vo/vo-full.wav) -->
+<div class="captions">
+  <div class="cap" style="animation: fadeIn .12s linear .25s both, fadeOut .12s linear 2.7s forwards"><span>Asyik <b>lapar</b> walaupun baru lepas makan?</span></div>
+  <div class="cap" style="animation: fadeIn .12s linear 3.05s both, fadeOut .12s linear 4.95s forwards"><span><b>Craving</b> snek tak berhenti,</span></div>
+  <div class="cap" style="animation: fadeIn .12s linear 5.05s both, fadeOut .12s linear 7.15s forwards"><span>diet ketat pun berat <b>naik balik.</b></span></div>
+  <div class="cap" style="animation: fadeIn .12s linear 7.35s both, fadeOut .12s linear 9.15s forwards"><span>Cuba <b>KIYORA GLP-1i Patch.</b></span></div>
+  <div class="cap" style="animation: fadeIn .12s linear 9.2s both, fadeOut .12s linear 10.7s forwards"><span>Tak perlu <b>telan pil,</b></span></div>
+  <div class="cap" style="animation: fadeIn .12s linear 10.7s both, fadeOut .12s linear 12.2s forwards"><span>tak perlu <b>jarum.</b></span></div>
+  <div class="cap" style="animation: fadeIn .12s linear 12.35s both, fadeOut .12s linear 14.25s forwards"><span><b>Tampal je</b> kat lengan atau perut.</span></div>
+  <div class="cap" style="animation: fadeIn .12s linear 14.4s both, fadeOut .12s linear 17.3s forwards"><span><b>Formula herba</b> bantu kawal selera makan sepanjang hari.</span></div>
+  <div class="cap" style="animation: fadeIn .12s linear 17.5s both, fadeOut .12s linear 20.35s forwards"><span>Rating <b>4.9 bintang</b> dari pengguna,</span></div>
+  <div class="cap" style="animation: fadeIn .12s linear 20.45s both, fadeOut .12s linear 23.1s forwards"><span>dengan <b>jaminan wang dikembalikan</b> 60 hari.</span></div>
+  <div class="cap" style="animation: fadeIn .12s linear 23.35s both, fadeOut .12s linear 25.7s forwards"><span><b>Penghantaran percuma</b> seluruh Malaysia,</span></div>
+  <div class="cap" style="animation: fadeIn .12s linear 25.75s both, fadeOut .12s linear 26.7s forwards"><span>boleh <b>COD.</b></span></div>
+  <div class="cap" style="animation: fadeIn .12s linear 26.8s both, fadeOut .12s linear 29.6s forwards"><span><b>Order sekarang</b> di <span style="white-space: nowrap">kiyora-official.com!</span></span></div>
+</div>
+
+<script>
+  // Deterministic frame seeking: pause every CSS animation at time t (seconds).
+  window.seek = (t) => {
+    for (const a of document.getAnimations()) { a.pause(); a.currentTime = t * 1000; }
+  };
+  window.ready = Promise.all([
+    document.fonts.ready,
+    ...[...document.images].map(img => img.complete ? null : new Promise(r => { img.onload = img.onerror = r; })),
+  ]);
+</script>
+</body>
+</html>
