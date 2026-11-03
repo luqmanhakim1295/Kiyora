@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="ms">
+<head>
+<meta charset="utf-8">
+<title>KIYORA Page Art</title>
+<link rel="stylesheet" href="../../video/src/fonts/fonts.css">
+<style>
+  :root {
+    --navy: #071f57;
+    --navy-2: #0c3290;
+    --blue: #1556d0;
+    --magenta: #e5157a;
+    --gold: #f7c948;
+    --green: #22c55e;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #333; font-family: 'Montserrat', sans-serif; color: #fff; padding: 20px; display: grid; gap: 20px; justify-items: start; }
+  .art {
+    position: relative; overflow: hidden;
+    background:
+      radial-gradient(60% 80% at 70% 45%, rgba(37, 99, 235, .55), transparent 70%),
+      linear-gradient(160deg, var(--navy) 0%, var(--navy-2) 55%, var(--navy) 100%);
+  }
+  .dots {
+    position: absolute; inset: 0;
+    background-image: radial-gradient(rgba(255,255,255,.08) 2px, transparent 2.5px);
+    background-size: 46px 46px;
+  }
+
+  /* Profile picture 1080x1080 — content kept inside the centre circle */
+  #profile { width: 1080px; height: 1080px; }
+  #profile .ring {
+    position: absolute; left: 90px; top: 90px; width: 900px; height: 900px; border-radius: 50%;
+    border: 10px solid rgba(247, 201, 72, .9); box-shadow: 0 0 80px rgba(247, 201, 72, .25) inset;
+  }
+  #profile .word {
+    position: absolute; left: 0; right: 0; top: 440px; text-align: center;
+    font-weight: 900; font-size: 150px; letter-spacing: 6px; line-height: 1;
+    text-shadow: 0 10px 30px rgba(0,0,0,.35);
+  }
+  #profile .word sup { font-size: 44px; letter-spacing: 0; vertical-align: 86px; margin-left: -2px; }
+  #profile .bar { position: absolute; left: 415px; width: 250px; top: 630px; height: 14px; border-radius: 7px; background: var(--gold); }
+  #profile .tag {
+    position: absolute; left: 0; right: 0; top: 675px; text-align: center;
+    font-weight: 800; font-size: 40px; letter-spacing: 8px; color: #cfe0ff;
+  }
+  #profile .patch { position: absolute; width: 170px; left: 455px; top: 230px; transform: rotate(-8deg); filter: drop-shadow(0 16px 24px rgba(0,0,0,.4)); }
+
+  /* Cover 1640x624 — mobile shows roughly the centre 1110px, desktop profile pic sits bottom-left */
+  #cover { width: 1640px; height: 624px; }
+  #cover .copy { position: absolute; left: 300px; top: 64px; width: 800px; }
+  #cover .kicker {
+    display: inline-block; padding: 10px 26px 12px; border-radius: 12px; background: var(--magenta);
+    font-weight: 900; font-style: italic; font-size: 34px; transform: skewX(-8deg); text-transform: uppercase;
+    box-shadow: 0 12px 30px rgba(229,21,122,.4);
+  }
+  #cover h1 {
+    margin-top: 20px; font-weight: 900; font-style: italic; font-size: 74px; line-height: .98; text-transform: uppercase;
+    text-shadow: 0 6px 24px rgba(0,0,0,.35);
+  }
+  #cover h1 em { color: var(--gold); font-style: italic; }
+  #cover .sub { margin-top: 14px; font-weight: 800; font-size: 28px; color: #dbe6ff; }
+  #cover .chips { margin-top: 22px; display: flex; gap: 16px; }
+  #cover .chip {
+    display: flex; align-items: center; gap: 12px; padding: 12px 22px; border-radius: 999px;
+    background: rgba(255,255,255,.12); border: 2px solid rgba(255,255,255,.35);
+    font-weight: 900; font-size: 24px; text-transform: uppercase; white-space: nowrap;
+  }
+  #cover .chip svg { width: 40px; height: 40px; flex: none; }
+  #cover .glow {
+    position: absolute; left: 990px; top: 0; width: 520px; height: 624px;
+    background: radial-gradient(circle at 50% 50%, rgba(247,201,72,.45), rgba(247,201,72,0) 60%);
+  }
+  #cover .box { position: absolute; left: 1080px; top: 80px; height: 460px; filter: drop-shadow(0 30px 40px rgba(0,0,0,.5)); }
+  #cover .patch { position: absolute; left: 1270px; top: 395px; width: 150px; transform: rotate(-10deg); filter: drop-shadow(0 16px 24px rgba(0,0,0,.45)); }
+  #cover .url { position: absolute; left: 300px; top: 470px; font-weight: 900; font-size: 30px; letter-spacing: 1px; color: #fff; opacity: .9; }
+</style>
+</head>
+<body>
+
+<div id="profile" class="art">
+  <div class="dots"></div>
+  <div class="ring"></div>
+  <img class="patch" src="../../video/src/img/patch.png" alt="">
+  <div class="word">KIYORA<sup>™</sup></div>
+  <div class="bar"></div>
+  <div class="tag">CRAVING PATCH</div>
+</div>
+
+<div id="cover" class="art">
+  <div class="dots"></div>
+  <div class="copy">
+    <span class="kicker">Tanpa pil · Tanpa jarum</span>
+    <h1>Tampal je.<br><em>Kawal craving.</em></h1>
+    <div class="sub">Patch herba untuk bantu kawal selera makan</div>
+    <div class="chips">
+      <div class="chip">
+        <svg viewBox="0 0 64 64" aria-hidden="true">
+          <rect x="4" y="16" width="34" height="26" rx="3" fill="#f7c948"/>
+          <path d="M38 24 H50 L58 34 V42 H38 Z" fill="#f7c948"/>
+          <rect x="42" y="27" width="8" height="7" fill="#071f57"/>
+          <circle cx="16" cy="45" r="6" fill="#fff" stroke="#071f57" stroke-width="3"/>
+          <circle cx="48" cy="45" r="6" fill="#fff" stroke="#071f57" stroke-width="3"/>
+        </svg>
+        Free delivery
+      </div>
+      <div class="chip">
+        <svg viewBox="0 0 64 64" aria-hidden="true">
+          <rect x="6" y="14" width="52" height="36" rx="6" fill="#22c55e"/>
+          <circle cx="32" cy="32" r="10" fill="none" stroke="#fff" stroke-width="4"/>
+        </svg>
+        COD seluruh Malaysia
+      </div>
+    </div>
+  </div>
+  <div class="glow"></div>
+  <img class="box" src="../../video/src/img/box.png" alt="">
+  <img class="patch" src="../../video/src/img/patch.png" alt="">
+  <div class="url">kiyora-official.com</div>
+</div>
+
+</body>
+</html>
