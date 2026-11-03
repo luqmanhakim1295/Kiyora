@@ -15,6 +15,24 @@ Bahan iklan untuk video 30s (`video/out/kiyora-ad-30s.mp4`). Harga **tidak** dis
 
 ---
 
+## Keputusan terkini pengguna (mengatasi bahagian 2–4 jika bercanggah)
+
+| Perkara | Nilai |
+|---|---|
+| Ad account | **160 \| Unlimited Spend Ads Acc** — `act_808762190838703` |
+| Facebook Page | **KIYORA Official** — ⚠️ belum muncul dalam senarai Page yang boleh diiklankan oleh akaun ini (hanya *Raudhya by Ustazah Asma' Harun* `1187092341153994`, **jangan guna**) |
+| Pixel | **kiyora anas** — `2168615980356523`, event PURCHASE |
+| Objektif | Sales |
+| Lokasi | Malaysia sahaja, umur 25–54, semua jantina |
+| Bajet | **RM100/hari** di peringkat ad set — sahkan mata wang akaun; jika USD, tukar ke anggaran USD bersamaan |
+| AI / automasi | **Semua OFF**: Advantage+ Audience off, Advantage+ Creative off (semua enhancement), CBO off, placement manual (FB Feed, Video Feeds, Stories, Reels + IG jika ada), multi-advertiser off, tiada dynamic creative |
+| Ads | 3 ad dalam satu ad set — satu bagi setiap variasi teks (bahagian 4) |
+| Video | `https://raw.githubusercontent.com/luqmanhakim1295/Kiyora/7b5f53058721091644aaedd7372aa7ae7c322306/video/out/kiyora-ad-30s.mp4` |
+| Thumbnail | `https://raw.githubusercontent.com/luqmanhakim1295/Kiyora/claude/relaxed-pascal-rtg3nf/ads/thumbnail.jpg` |
+| Status | Cipta **PAUSED**, tunjuk ringkasan, aktifkan hanya bila pengguna kata "on" |
+
+---
+
 ## 1. Prasyarat (pengguna)
 
 - [ ] Ad account Meta aktif dengan kaedah pembayaran
